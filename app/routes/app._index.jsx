@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useFetcher } from "@remix-run/react";
+import { redirect, useFetcher, useNavigate } from "@remix-run/react";
 import {
   Page,
   Layout,
@@ -10,7 +10,7 @@ import {
   Box,
   List,
   Link,
-  InlineStack,
+  InlineStack
 } from "@shopify/polaris";
 import { TitleBar, useAppBridge } from "@shopify/app-bridge-react";
 import { authenticate } from "../shopify.server";
@@ -89,6 +89,7 @@ export const action = async ({ request }) => {
 export default function Index() {
   const fetcher = useFetcher();
   const shopify = useAppBridge();
+  const navigate = useNavigate();
   const isLoading =
     ["loading", "submitting"].includes(fetcher.state) &&
     fetcher.formMethod === "POST";
@@ -106,10 +107,9 @@ export default function Index() {
 
   return (
     <Page>
-      <TitleBar title="Remix app template">
-        <button variant="primary" onClick={generateProduct}>
-          Generate a product
-        </button>
+      <TitleBar title="Manually Order Create">
+        {/* <Button target="/create-order" variant="primary">Create order</Button> */}
+        <button variant={"primary"} onClick={() => navigate('/app/create-order')}>Create Order</button>
       </TitleBar>
       <BlockStack gap="500">
         <Layout>

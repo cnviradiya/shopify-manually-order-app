@@ -1,13 +1,14 @@
 # Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
 
 client_id = "22881dbe27a8d3b77e03363958d0588d"
-application_url = "https://example.com/"
+application_url = "https://wealth-qualifications-kent-map.trycloudflare.com"
 embedded = true
 name = "order-create-manual-zack"
 handle = "order-create-manual-zack"
 
 [build]
 include_config_on_deploy = true
+automatically_update_urls_on_dev = true
 
 [webhooks]
 api_version = "2025-01"
@@ -22,10 +23,14 @@ api_version = "2025-01"
 
 [access_scopes]
 # Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
-scopes = "write_products"
+scopes = "read_products,read_orders,write_orders,read_customers,write_customers,read_draft_orders,write_draft_orders"
 
 [auth]
-redirect_urls = [ "https://example.com/api/auth" ]
+redirect_urls = [
+  "https://wealth-qualifications-kent-map.trycloudflare.com/auth/callback",
+  "https://wealth-qualifications-kent-map.trycloudflare.com/auth/shopify/callback",
+  "https://wealth-qualifications-kent-map.trycloudflare.com/api/auth/callback"
+]
 
 [pos]
 embedded = false
